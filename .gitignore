@@ -205,3 +205,31 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# =========================
+# IDP Pipeline runtime data (DO NOT COMMIT)
+# =========================
+
+# 1) lineage：每個 job 都會生 JSON（很容易爆量）
+idp_pipeline/data/lineage/**
+!idp_pipeline/data/lineage/.keep
+
+# 2) uploads：上傳檔、pdf->images、暫存圖，全部都是執行期產物
+idp_pipeline/data/uploads/**
+!idp_pipeline/data/uploads/.keep
+
+# 如果你「想保留」兩個固定測試檔（不然 README 沒得跑）
+# 先把父資料夾解除忽略，才能解除檔案忽略
+!idp_pipeline/data/uploads/pdf/
+!idp_pipeline/data/uploads/images/
+!idp_pipeline/data/uploads/pdf/sample_table.pdf
+!idp_pipeline/data/uploads/pdf/text_ok.pdf
+!idp_pipeline/data/uploads/images/clear_text.png
+
+# 3) 本機持久化 DB：neo4j / qdrant 都不應該進 git
+idp_pipeline/data/neo4j/**
+idp_pipeline/data/qdrant/**
+
+# 4) Deepeval 或你跑評估時產生的資料夾（看你實際名稱）
+.deepeval/
+deepeval_output/
